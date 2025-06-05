@@ -7,7 +7,7 @@ import {
   expenseSchema,
   createExpenseSchema,
   paginationSchema,
-  dateRangeSchema
+  dateRangeSchema,
 } from '../../src/models/schemas';
 
 describe('Category Schemas', () => {
@@ -18,7 +18,7 @@ describe('Category Schemas', () => {
       description: 'Food and household items',
       user_id: '123e4567-e89b-12d3-a456-426614174001',
       created_at: '2023-01-01T00:00:00Z',
-      updated_at: '2023-01-01T00:00:00Z'
+      updated_at: '2023-01-01T00:00:00Z',
     };
 
     expect(() => categorySchema.parse(validCategory)).not.toThrow();
@@ -27,7 +27,7 @@ describe('Category Schemas', () => {
   it('should validate a valid create category input', () => {
     const validInput = {
       name: 'Groceries',
-      description: 'Food and household items'
+      description: 'Food and household items',
     };
 
     expect(() => createCategorySchema.parse(validInput)).not.toThrow();
@@ -36,7 +36,7 @@ describe('Category Schemas', () => {
   it('should reject a category with empty name', () => {
     const invalidCategory = {
       name: '',
-      description: 'Food and household items'
+      description: 'Food and household items',
     };
 
     expect(() => createCategorySchema.parse(invalidCategory)).toThrow();
@@ -54,7 +54,7 @@ describe('Budget Schemas', () => {
       category_id: '123e4567-e89b-12d3-a456-426614174002',
       user_id: '123e4567-e89b-12d3-a456-426614174001',
       created_at: '2023-01-01T00:00:00Z',
-      updated_at: '2023-01-01T00:00:00Z'
+      updated_at: '2023-01-01T00:00:00Z',
     };
 
     expect(() => budgetSchema.parse(validBudget)).not.toThrow();
@@ -96,7 +96,7 @@ describe('Expense Schemas', () => {
       budget_id: '123e4567-e89b-12d3-a456-426614174003',
       user_id: '123e4567-e89b-12d3-a456-426614174001',
       created_at: '2023-01-01T00:00:00Z',
-      updated_at: '2023-01-01T00:00:00Z'
+      updated_at: '2023-01-01T00:00:00Z',
     };
 
     expect(() => expenseSchema.parse(validExpense)).not.toThrow();
@@ -129,7 +129,7 @@ describe('Query Parameter Schemas', () => {
   it('should parse pagination parameters', () => {
     const params = { page: '2', limit: '20' };
     const parsed = paginationSchema.parse(params);
-    
+
     expect(parsed.page).toBe(2);
     expect(parsed.limit).toBe(20);
   });
@@ -137,26 +137,26 @@ describe('Query Parameter Schemas', () => {
   it('should provide default pagination values', () => {
     const params = {};
     const parsed = paginationSchema.parse(params);
-    
+
     expect(parsed.page).toBe(1);
     expect(parsed.limit).toBe(10);
   });
 
   it('should validate date range parameters', () => {
-    const validParams = { 
-      start_date: '2023-01-01', 
-      end_date: '2023-01-31' 
+    const validParams = {
+      start_date: '2023-01-01',
+      end_date: '2023-01-31',
     };
-    
+
     expect(() => dateRangeSchema.parse(validParams)).not.toThrow();
   });
 
   it('should reject invalid date format', () => {
-    const invalidParams = { 
-      start_date: 'not-a-date', 
-      end_date: '2023-01-31' 
+    const invalidParams = {
+      start_date: 'not-a-date',
+      end_date: '2023-01-31',
     };
-    
+
     expect(() => dateRangeSchema.parse(invalidParams)).toThrow();
   });
 });

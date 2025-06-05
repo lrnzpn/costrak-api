@@ -18,13 +18,14 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 export const testConnection = async () => {
   try {
     const { data, error } = await supabase.from('health_check').select('*').limit(1);
-    
+
     if (error) {
       console.error('Database connection error:', error.message);
     } else {
+      // eslint-disable-next-line no-console
       console.log('Database connection successful');
     }
-    
+
     return { data, error };
   } catch (error) {
     console.error('Failed to connect to Supabase:', error);

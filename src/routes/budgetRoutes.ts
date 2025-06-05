@@ -1,30 +1,31 @@
 import { Router } from 'express';
-import { 
+import {
   getAllBudgets,
   getBudgetById,
   createBudget,
   updateBudget,
   deleteBudget,
-  getBudgetSummary
+  getBudgetSummary,
 } from '../controllers/budgetController';
 import { validate } from '../middlewares/validationMiddleware';
-import { 
-  createBudgetSchema, 
-  updateBudgetSchema, 
+import {
+  createBudgetSchema,
+  updateBudgetSchema,
   paginationSchema,
-  dateRangeSchema
+  dateRangeSchema,
 } from '../models/schemas';
 
 const router = Router();
 
-router.route('/')
+router
+  .route('/')
   .get(validate({ ...paginationSchema, ...dateRangeSchema }, 'query'), getAllBudgets)
   .post(validate(createBudgetSchema), createBudget);
 
-router.route('/summary')
-  .get(validate(dateRangeSchema, 'query'), getBudgetSummary);
+router.route('/summary').get(validate(dateRangeSchema, 'query'), getBudgetSummary);
 
-router.route('/:id')
+router
+  .route('/:id')
   .get(getBudgetById)
   .patch(validate(updateBudgetSchema), updateBudget)
   .delete(deleteBudget);

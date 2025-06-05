@@ -1,5 +1,5 @@
 // This file will be run before all tests
-import { beforeAll, afterAll, afterEach, vi } from 'vitest';
+import { beforeAll, afterEach, vi } from 'vitest';
 
 // Clear any environment mocks between tests
 afterEach(() => {

@@ -31,7 +31,7 @@ insert into categories (name, description) values
   ('Education', 'Tuition, books, courses'),
   ('Debt Payments', 'Credit cards, student loans, personal loans'),
   ('Savings', 'Emergency fund, retirement, investments'),
-  ('Miscellaneous', 'Other expenses that don\'t fit in other categories')
+  ('Miscellaneous', "Other expenses that don\'t fit in other categories")
 on conflict do nothing;
 
 -- Budgets table

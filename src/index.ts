@@ -37,9 +37,8 @@ testConnection().catch(console.error);
 
 // Authentication middleware
 // In development, you can use devAuthMiddleware instead for testing
-const authMiddlewareToUse = process.env.NODE_ENV === 'development' 
-  ? devAuthMiddleware 
-  : authMiddleware;
+const authMiddlewareToUse =
+  process.env.NODE_ENV === 'development' ? devAuthMiddleware : authMiddleware;
 
 // Routes
 app.use('/api/budgets', authMiddlewareToUse, budgetRoutes);
@@ -57,7 +56,9 @@ app.use(errorHandler);
 // Start the server
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
     console.log(`Server running on port ${PORT}`);
+    // eslint-disable-next-line no-console
     console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   });
 }

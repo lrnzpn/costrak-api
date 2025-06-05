@@ -11,10 +11,10 @@ export const validate = (schema: AnyZodObject, source: 'body' | 'params' | 'quer
     try {
       // Parse and validate the request data against the provided schema
       const data = await schema.parseAsync(req[source]);
-      
+
       // Replace the request data with the validated data
       req[source] = data;
-      
+
       next();
     } catch (error) {
       // Pass Zod errors to the error handler

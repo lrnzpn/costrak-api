@@ -43,8 +43,9 @@ export const errorHandler = (
   // Handle unknown errors
   return res.status(500).json({
     status: 'error',
-    message: process.env.NODE_ENV === 'production' 
-      ? 'Something went wrong' 
-      : err.message || 'Internal server error',
+    message:
+      process.env.NODE_ENV === 'production'
+        ? 'Something went wrong'
+        : err.message || 'Internal server error',
   });
 };

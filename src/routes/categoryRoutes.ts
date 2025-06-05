@@ -1,25 +1,23 @@
 import { Router } from 'express';
-import { 
+import {
   getAllCategories,
   getCategoryById,
   createCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
 } from '../controllers/categoryController';
 import { validate } from '../middlewares/validationMiddleware';
-import { 
-  createCategorySchema, 
-  updateCategorySchema, 
-  paginationSchema 
-} from '../models/schemas';
+import { createCategorySchema, updateCategorySchema, paginationSchema } from '../models/schemas';
 
 const router = Router();
 
-router.route('/')
+router
+  .route('/')
   .get(validate(paginationSchema, 'query'), getAllCategories)
   .post(validate(createCategorySchema), createCategory);
 
-router.route('/:id')
+router
+  .route('/:id')
   .get(getCategoryById)
   .patch(validate(updateCategorySchema), updateCategory)
   .delete(deleteCategory);
